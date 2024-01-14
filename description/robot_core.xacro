@@ -7,14 +7,12 @@
     <xacro:property name="chassis_radius" value="0.175"/> <!-- R = 175mm-->
     <xacro:property name="chassis_height" value="0.12"/> <!-- h = 120mm-->
     <xacro:property name="chassis_mass" value="1.0"/>
-
     <xacro:property name="wheel_radius" value="0.0325"/> <!-- R = 32.5mm-->
     <xacro:property name="wheel_thickness" value="0.025"/> <!-- h = 25mm-->
     <xacro:property name="wheel_mass" value="0.05"/>
     <xacro:property name="wheel_offset_x" value="0.175"/> <!-- x = 175mm-->
     <xacro:property name="wheel_offset_y" value="0.133"/> <!-- y = 120mm + 12.5mm + 0.5mm-->
     <xacro:property name="wheel_offset_z" value="0.0125"/> <!-- z = 12.5mm-->
-
     <xacro:property name="caster_wheel_radius" value="0.01"/>  <!-- R = 10mm-->
     <xacro:property name="caster_wheel_mass" value="0.01"/>
     <xacro:property name="caster_wheel_offset_x" value="0.3125"/> <!-- x = 137.5 + 175mm-->
@@ -52,26 +50,26 @@
     <joint name="chassis_joint" type="fixed">
         <parent link="base_link"/>
         <child link="chassis"/>
-        <origin xyz="${-wheel_offset_x} 0 0"/>
+        <origin xyz="-${wheel_offset_x} 0 0"/>
     </joint>
 
     <link name="chassis">
         <visual>
-            <origin xyz="${chassis_radius} 0 ${chassis_height/2 - 0.005}"/>
+            <origin xyz="${chassis_radius} 0 ${chassis_height/2}"/>
             <geometry>
                 <cylinder radius="${chassis_radius}" length="${chassis_height}"/>
             </geometry>
             <material name="white"/>
         </visual>
         <collision>
-            <origin xyz="${chassis_radius} 0 ${chassis_height/2 - 0.005}"/>
+            <origin xyz="${chassis_radius} 0 ${chassis_height/2}"/>
             <geometry>
                 <cylinder radius="${chassis_radius}" length="${chassis_height}"/>
             </geometry>
         </collision>
         <xacro:inertial_cylinder mass="${chassis_mass}" length="${chassis_height}" radius="${chassis_radius}">
-            <origin xyz="${chassis_radius} 0 ${chassis_height/2 - 0.005}" rpy="0 0 0"/>
-        </xacro:inertial_box>
+            <origin xyz="${chassis_radius} 0 ${chassis_height/2}" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
     </link>
 
     <!-- LEFT WHEEL LINK -->
@@ -98,14 +96,14 @@
         <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_thickness}" radius="${wheel_radius}">
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
-    </link>
+    </link> 
 
     <!-- RIGHT WHEEL LINK -->
 
-    <joint name="right_wheel_joint" type="continuous">
+   <joint name="right_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="right_wheel"/>
-        <origin xyz="0 ${-wheel_offset_y} ${wheel_offset_z}" rpy="${pi/2} 0 0" />
+        <origin xyz="0 -${wheel_offset_y} ${wheel_offset_z}" rpy="${pi/2} 0 0" />
         <axis xyz="0 0 -1"/>
     </joint>
 
@@ -130,7 +128,7 @@
 
     <joint name="caster_before_wheel_joint" type="fixed">
         <parent link="chassis"/>
-        <child link="caster_wheel"/>
+        <child link="caster_before_wheel"/>
         <origin xyz="${caster_wheel_offset_x} 0 ${caster_wheel_offset_z}"/>
     </joint>
 
@@ -153,8 +151,8 @@
 
     <joint name="caster_after_wheel_joint" type="fixed">
         <parent link="chassis"/>
-        <child link="caster_wheel"/>
-        <origin xyz="$0.0375 0 ${caster_wheel_offset_z}"/>
+        <child link="caster_after_wheel"/>
+        <origin xyz="0.0375 0 ${caster_wheel_offset_z}"/>
     </joint>
 
     <link name="caster_after_wheel">
