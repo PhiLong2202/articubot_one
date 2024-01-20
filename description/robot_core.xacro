@@ -75,7 +75,7 @@
             <geometry>
                 <cylinder radius="0.008" length="0.125"/>
             </geometry>
-            <material name="black"/>
+            <material name="orange"/>
         </visual> 
         <!-- Tru 2 -->
         <visual>
@@ -83,7 +83,7 @@
             <geometry>
                 <cylinder radius="0.008" length="0.125"/>
             </geometry>
-            <material name="black"/>
+            <material name="orange"/>
         </visual>
         <!-- Tru 3 -->
         <visual>
@@ -91,7 +91,7 @@
             <geometry>
                 <cylinder radius="0.008" length="0.125"/>
             </geometry>
-            <material name="black"/>
+            <material name="orange"/>
         </visual>
         <!-- Tru 4 -->
         <visual>
@@ -99,7 +99,7 @@
             <geometry>
                 <cylinder radius="0.008" length="0.125"/>
             </geometry>
-            <material name="black"/>
+            <material name="orange"/>
         </visual>
 
         <collision>
