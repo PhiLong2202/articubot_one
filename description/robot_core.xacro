@@ -108,8 +108,16 @@
                 <cylinder radius="${chassis_radius}" length="${chassis_height}"/>
             </geometry>
         </collision>
+        <collision>
+            <origin xyz="${chassis_radius} 0 0.13"/>
+            <geometry>
+                <cylinder radius="${chassis_radius}" length="${chassis_height}"/>
+            </geometry>
+        </collision>
+
         <xacro:inertial_cylinder mass="${chassis_mass}" length="${chassis_height}" radius="${chassis_radius}">
             <origin xyz="${chassis_radius} 0 -${chassis_height/2}" rpy="0 0 0"/>
+            <origin xyz="${chassis_radius} 0 0.13" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
 
